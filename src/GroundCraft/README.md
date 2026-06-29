@@ -19,7 +19,7 @@
 
 配置目录：`tshock/GroundCraft/`
 
-- `config.json`: 扫描间隔、合成半径、通知、残影清理、安全规则、权限
+- `config.json`: 扫描间隔、合成半径、通知、合成粒子、残影清理、安全规则、权限
 - `recipes.json`: 自定义地上合成表
 
 `/gcreload` 会热重载两个 JSON 文件，不需要重启服务器。
@@ -39,6 +39,13 @@
   "notifyPlayers": true,
   "notifyConsumedItems": true,
   "clearClientGhostItems": true,
+  "craftEffect": {
+    "enabled": true,
+    "style": "Fairy",
+    "burstCount": 1,
+    "radiusTiles": 0.4,
+    "fairyColor": 2
+  },
   "allowSingleIngredientTypeRecipes": false,
   "allowCoinRecipes": false,
   "allowInputOutputSameItem": false,
@@ -46,6 +53,8 @@
   "adminPermission": "groundcraft.admin"
 }
 ```
+
+`craftEffect` 控制合成成功时的客户端粒子效果；`style` 支持 `Fairy`、`Smoke`、`Both`，`fairyColor` 支持 `0` 粉、`1` 绿、`2` 蓝。`burstCount` 设为 `0` 或 `enabled` 设为 `false` 可关闭粒子。
 
 ## 配方 JSON
 
@@ -98,7 +107,7 @@
 
 ### v1.0.0
 
-- 初版：JSON 配方、JSON 条件、地形/环境判断、Boss 进度判断、热重载、配方审核、旧掉落物残影清理。
+- 初版：JSON 配方、JSON 条件、地形/环境判断、Boss 进度判断、热重载、配方审核、合成粒子、旧掉落物残影清理。
 
 ## 反馈
 

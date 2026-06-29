@@ -12,6 +12,13 @@
   "notifyPlayers": true,
   "notifyConsumedItems": true,
   "clearClientGhostItems": true,
+  "craftEffect": {
+    "enabled": true,
+    "style": "Fairy",
+    "burstCount": 1,
+    "radiusTiles": 0.4,
+    "fairyColor": 2
+  },
   "allowSingleIngredientTypeRecipes": false,
   "allowCoinRecipes": false,
   "allowInputOutputSameItem": false,

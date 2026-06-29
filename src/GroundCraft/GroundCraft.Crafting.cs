@@ -170,6 +170,7 @@ public sealed partial class GroundCraft
 
                 int outputStack = recipe.OutputStack * craftCount;
                 SpawnItem(recipe.OutputType, outputStack, center);
+                SpawnCraftEffect(center);
                 _runtime.CraftBatches++;
                 _runtime.Crafts += craftCount;
 

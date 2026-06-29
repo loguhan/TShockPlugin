@@ -115,6 +115,7 @@ public sealed partial class GroundCraft
         public bool NotifyPlayers { get; set; } = true;
         public bool NotifyConsumedItems { get; set; } = true;
         public bool ClearClientGhostItems { get; set; } = true;
+        public CraftEffectSpec CraftEffect { get; set; } = new();
         public bool AllowSingleIngredientTypeRecipes { get; set; }
         public bool AllowCoinRecipes { get; set; }
         public bool AllowInputOutputSameItem { get; set; }
@@ -137,6 +138,8 @@ public sealed partial class GroundCraft
             BiomePlayerProbeRadiusTiles = Math.Clamp(BiomePlayerProbeRadiusTiles, 1, 200);
             MaxCraftsPerClusterPerScan = Math.Clamp(MaxCraftsPerClusterPerScan, 1, 50);
             NotifyRadiusTiles = Math.Clamp(NotifyRadiusTiles, 1, 200);
+            CraftEffect ??= new CraftEffectSpec();
+            CraftEffect.Sanitize();
         }
 
         public string PlayerPermissionOrDefault()
@@ -200,6 +203,34 @@ public sealed partial class GroundCraft
         private static ItemStackSpec I(int id, int stack)
         {
             return new ItemStackSpec { Id = id, Stack = stack };
+        }
+    }
+
+    public sealed class CraftEffectSpec
+    {
+        public bool Enabled { get; set; } = true;
+        public string Style { get; set; } = "Fairy";
+        public int BurstCount { get; set; } = 1;
+        public float RadiusTiles { get; set; } = 0.4f;
+        public int FairyColor { get; set; } = 2;
+
+        public void Sanitize()
+        {
+            Style = StyleOrDefault();
+            BurstCount = Math.Clamp(BurstCount, 0, 8);
+            RadiusTiles = Math.Clamp(RadiusTiles, 0f, 4f);
+            FairyColor = Math.Clamp(FairyColor, 0, 2);
+        }
+
+        public string StyleOrDefault()
+        {
+            return Style?.Trim().ToLowerInvariant() switch
+            {
+                "smoke" => "Smoke",
+                "both" => "Both",
+                "fairy" or "sparkle" or "particles" or "particle" => "Fairy",
+                _ => "Fairy"
+            };
         }
     }
 

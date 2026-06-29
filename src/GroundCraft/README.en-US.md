@@ -19,10 +19,12 @@
 
 Files are generated under `tshock/GroundCraft/`.
 
-- `config.json`: scan interval, radius, notifications, client ghost cleanup, safety rules and permissions
+- `config.json`: scan interval, radius, notifications, craft particles, client ghost cleanup, safety rules and permissions
 - `recipes.json`: custom ground crafting recipes
 
 Use `/gcreload` to reload both JSON files without restarting the server.
+
+`craftEffect` controls client-side particles spawned when a craft succeeds. `style` supports `Fairy`, `Smoke` and `Both`; set `burstCount` to `0` or `enabled` to `false` to disable particles.
 
 ## Recipe Conditions
 
@@ -46,4 +48,4 @@ Supported condition groups:
 
 ### v1.0.0
 
-- Initial version: JSON recipes, JSON conditions, layer/biome/liquid checks, boss progress checks, hot reload, recipe audit and consumed drop cleanup.
+- Initial version: JSON recipes, JSON conditions, layer/biome/liquid checks, boss progress checks, hot reload, recipe audit, craft particles and consumed drop cleanup.
