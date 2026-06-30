@@ -33,4 +33,14 @@ public sealed partial class GroundCraft
         float angle = MathHelper.TwoPi * index / total;
         return new Vector2(MathF.Cos(angle) * radius, MathF.Sin(angle) * radius);
     }
+
+    private static void SpawnZenithFinale(Vector2 center)
+    {
+        for (int color = 0; color < 3; color++)
+        {
+            float angle = MathHelper.TwoPi * color / 3f;
+            Vector2 point = center + new Vector2(MathF.Cos(angle) * 18f, MathF.Sin(angle) * 10f);
+            NetMessage.SendData(MessageID.SpecialFX, -1, -1, null, 2, (int)point.X, (int)point.Y, 0f, color);
+        }
+    }
 }
